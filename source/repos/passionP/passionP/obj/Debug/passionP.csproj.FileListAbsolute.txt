@@ -121,3 +121,6 @@ C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.revi
 C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.productbrand.resources
 C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.productreview.resources
 C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.productretailer.resources
+C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.pictures.resources
+C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.RetailerProductPrice.resources
+C:\Users\yifat\source\repos\passionP\passionP\obj\Debug\passionP.Migrations.retailerproduct.resources

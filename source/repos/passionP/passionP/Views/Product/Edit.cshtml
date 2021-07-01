@@ -2,19 +2,22 @@
 
 @{
     ViewBag.Title = "Edit";
+    ViewBag.DiscontinuedChecked = Model.SelectedProduct.Discontinued ? "checked" : "";
 }
 
 <h2>Update Product</h2>
-<form action="/Product/Update/@Model.SelectedProduct.ProductID" method="POST">
-    <div style="display:none;">
-        @* Pass through the product ID *@
-        <input type="text" name="ProductID" value="@Model.SelectedProduct.ProductID" />
+<form action="/Product/Update/@Model.SelectedProduct.ProductID" method="POST" enctype = "multipart/form-data">
+    <div class="form-group">
+        <label for="productID">Product ID:</label>
+        <input type="text" class="form-control" name="ProductID" id="productID" value="@Model.SelectedProduct.ProductID" />
     </div>
-    <div>
-        <label>Name:</label> <input type="text" name="ProductName" value="@Model.SelectedProduct.ProductName" />
+    <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" class="form-control" name="ProductName" id="productName" value="@Model.SelectedProduct.ProductName" />
     </div>
-    <div>
-        <label>Discontinued:</label> <input type="checkbox" name="Discontinued" value="@Model.SelectedProduct.Discontinued" />
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="Check1" name="Discontinued" @ViewBag.DiscontinuedChecked />
+        <label class="form-check-label" for="Check1">Discontinued:</label>
     </div>
     <div>
         <label>Brand ID:</label>
@@ -23,17 +26,37 @@
             @foreach (var brand in Model.BrandOptions)
             {
                 string selected = "";
-                if (brand.BrandID == Model.SelectedProduct.ProductID)
+                if (brand.BrandName == Model.SelectedProduct.BrandName)
                 {
                     selected = "selected";
                 }
                 <option value="@brand.BrandID" @selected>@brand.BrandName</option>
 
             }
-        </select>
+
+        </select><br />
     </div>
+            <div class="form-group">
+                <label for="UploadFile">Update Image:</label>
+                <input type="file" class="form-control-file" id="UploadFile" name="ProductPic" />
+            </div>
+        
+    
     <div>
         <input type="submit" value="Update Product" />
 
     </div>
 </form>
+<div><br /><br />
+    <h4>Add new Retailer that sell this product @Model.SelectedProduct.ProductName</h4>
+    <form method="POST" action="/Product/Associate/@Model.SelectedProduct.ProductID">
+        <select name="RetailerID">
+            @foreach (var retailer in Model.AvailableRetailers)
+            {
+                <option value="@retailer.RetailerID">@retailer.RetailerName </option>
+            }
+
+        </select>
+        <input type="submit" value="Associate Retailer" />
+    </form>
+</div>
